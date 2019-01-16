@@ -4,13 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server/worker.js",
+    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" mocha server/**/*.test.js ",
+    "test-watch": "nodemon exec \"npm test\""
+  },
+  "engines": {
+    "node": "10.4.1"
   },
   "author": "Ben Kissi",
   "license": "ISC",
   "dependencies": {
     "axios": "0.18.0",
     "express": "4.16.4",
+    "mongodb": "3.1.11",
+    "mongoose": "5.4.4",
     "node-schedule": "1.3.1"
+  },
+  "devDependencies": {
+    "expect": "23.6.0",
+    "mocha": "5.2.0",
+    "nodemon": "1.18.9"
   }
 }
