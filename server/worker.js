@@ -20,11 +20,15 @@ var postStockDetails = async (stocks) => {
     await Stock.collection.deleteMany({});
     Stock.collection.insertMany(stocks, (err, docs) => {
         if(err) {
-            console.log('Unable to insert stocks into db', err)
+            console.log('Unable to insert stocks into db', err);
+            process.exit();
         } else {
-            console.log(`Inserted ${docs.insertedCount} items`)
+            console.log(`Inserted ${docs.insertedCount} items`);
+            process.exit();
+            
         }
     });
+    
 }
 
 // var worker = schedule.scheduleJob('*/1 * * * *', async () => {
@@ -40,7 +44,7 @@ var postStockDetails = async (stocks) => {
 var worker = async () => {
     try {
         var stocks = await getStockDetails();
-        await postStockDetails(stocks);
+        await postStockDetails(stocks);     
 
     } catch (e){
         throw new Error('Unable to execute worker', e);
